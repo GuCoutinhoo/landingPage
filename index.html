@@ -4,6 +4,8 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Gu Dev | Portfólio Profissional</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a2e0e9d6d4.js" crossorigin="anonymous"></script>
   <style>
     :root {
       --bg: #0d1117;
@@ -19,55 +21,42 @@
       --card-bg: #fff;
       --input-bg: #eee;
     }
-
     * {margin:0;padding:0;box-sizing:border-box;}
     body {font-family:"Poppins",sans-serif;background:var(--bg);color:var(--text);scroll-behavior:smooth;transition:all 0.3s;}
-
-    header {
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      padding:20px 10%;
-      background:var(--card-bg);
-      position:sticky;
-      top:0;
-      z-index:100;
-      transition:all 0.3s;
-    }
-    header h1 {color:var(--accent);font-size:1.6em;}
-
-    nav a {color:var(--text);margin-left:20px;text-decoration:none;transition:color 0.3s;}
+    
+    header {display:flex;justify-content:space-between;align-items:center;padding:20px 10%;background:var(--card-bg);position:sticky;top:0;z-index:100;transition:all 0.3s;}
+    header h1 {color:var(--accent);font-size:1.8em;}
+    nav a {color:var(--text);margin-left:25px;text-decoration:none;font-weight:500;transition:color 0.3s;}
     nav a:hover {color:var(--accent);}
 
-    section {padding:80px 10%;text-align:center;transition:all 0.3s;}
-    .hero {display:flex;flex-direction:column;justify-content:center;align-items:center;height:90vh;background:linear-gradient(135deg,var(--bg),#1f2937);}
-    .hero h2 {font-size:2.4em;margin-bottom:10px;}
+    .hero {display:flex;flex-direction:column;justify-content:center;align-items:center;height:90vh;background:linear-gradient(135deg,var(--bg),#1f2937);text-align:center;}
+    .hero h2 {font-size:2.8em;margin-bottom:10px;}
     .typing {color:var(--accent);border-right:2px solid var(--accent);white-space:nowrap;overflow:hidden;}
-    .mini-bio {margin-top:15px; font-size:1.1em; color:#c9d1d9;}
-    .hero-buttons {margin-top:20px; display:flex; gap:15px; justify-content:center;}
-    .hero-buttons .btn {padding:10px 20px; border:none; border-radius:5px; background:var(--accent); color:white; cursor:pointer; transition:0.3s;}
+    .mini-bio {margin-top:15px; font-size:1.2em; color:#c9d1d9;}
+    .hero-buttons {margin-top:25px; display:flex; gap:15px; justify-content:center;flex-wrap:wrap;}
+    .hero-buttons .btn {padding:12px 25px; border:none; border-radius:5px; background:var(--accent); color:white; cursor:pointer; transition:0.3s; font-weight:600;}
     .hero-buttons .btn:hover {background:#1f6feb;}
-    .social {display:flex;justify-content:center;gap:15px;margin-top:20px;}
-    .social a {color:var(--accent);font-size:1.8em;transition:transform 0.3s;} 
-    .social a:hover{transform:scale(1.2);}
+    .social {display:flex;justify-content:center;gap:20px;margin-top:25px;}
+    .social a {color:var(--accent);font-size:2em;transition:transform 0.3s;} 
+    .social a:hover{transform:scale(1.3);}
 
-    .sobre {display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:30px;}
-    .sobre img {width:200px;border-radius:50%;border:3px solid var(--accent);}
-    .sobre p {max-width:500px;line-height:1.6;text-align:left;}
+    .sobre {display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:30px;margin-top:40px;}
+    .sobre img {width:200px;border-radius:50%;border:4px solid var(--accent);}
+    .sobre p {max-width:550px;line-height:1.7;text-align:left;font-size:1.1em;}
 
-    .skills {max-width:600px;margin:0 auto;text-align:left;}
+    .skills {max-width:650px;margin:0 auto;text-align:left;}
     .skill {margin:20px 0;}
-    .bar {background:var(--input-bg);border-radius:10px;overflow:hidden;height:10px;}
-    .fill {height:10px;background:var(--accent);border-radius:10px;transition:width 1s;}
+    .bar {background:var(--input-bg);border-radius:10px;overflow:hidden;height:12px;}
+    .fill {height:12px;background:var(--accent);border-radius:10px;transition:width 1s;}
 
     .projects {display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:30px;margin-top:40px;}
     .card {background:var(--card-bg);padding:25px;border-radius:12px;transition:transform 0.3s,box-shadow 0.3s;}
-    .card:hover {transform:translateY(-5px);box-shadow:0 0 15px var(--accent);}
+    .card:hover {transform:translateY(-5px);box-shadow:0 0 20px var(--accent);}
     .card h3{color:var(--accent);margin-bottom:10px;}
 
     .services {display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:30px;margin-top:40px;}
     .service-card {background:var(--card-bg);padding:20px;border-radius:12px;transition:transform 0.3s,box-shadow 0.3s;}
-    .service-card:hover {transform:translateY(-5px);box-shadow:0 0 15px var(--accent);}
+    .service-card:hover {transform:translateY(-5px);box-shadow:0 0 20px var(--accent);}
 
     .timeline {position:relative;max-width:800px;margin:50px auto;}
     .timeline::after {content:'';position:absolute;width:6px;background:var(--accent);top:0;bottom:0;left:50%;transform:translateX(-50%);}
@@ -76,8 +65,12 @@
     .event::after{content:'';position:absolute;width:20px;height:20px;background:var(--accent);top:20px;right:-10px;border-radius:50%;border:4px solid var(--bg);}
     .event.right::after{left:-10px;right:auto;border:4px solid var(--bg);}
 
-    form {display:flex;flex-direction:column;max-width:400px;margin:0 auto;gap:15px;}
-    input,textarea,button {padding:12px;border:none;border-radius:5px;outline:none;transition:all 0.3s;}
+    .testimonials {display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:30px;margin-top:40px;}
+    .testimonial-card {background:var(--card-bg);padding:20px;border-radius:12px;transition:transform 0.3s,box-shadow 0.3s;}
+    .testimonial-card:hover {transform:translateY(-5px);box-shadow:0 0 20px var(--accent);}
+
+    form {display:flex;flex-direction:column;max-width:450px;margin:0 auto;gap:15px;}
+    input,textarea,button {padding:12px;border:none;border-radius:5px;outline:none;transition:all 0.3s;font-size:1em;}
     input,textarea{background:var(--input-bg);color:var(--text);}
     button{background:var(--accent);color:white;font-weight:bold;cursor:pointer;}
     button:hover{background:#1f6feb;}
@@ -87,36 +80,26 @@
     .hidden {opacity:0;transform:translateY(40px);transition:all 0.8s ease;}
     .show{opacity:1;transform:translateY(0);}
 
-    .testimonials {display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:30px;margin-top:40px;}
-    .testimonial-card {background:var(--card-bg);padding:20px;border-radius:12px;transition:transform 0.3s,box-shadow 0.3s;}
-    .testimonial-card:hover {transform:translateY(-5px);box-shadow:0 0 15px var(--accent);}
-
-    /* MENU HAMBURGER */
-    .menu-toggle {display:none;font-size:1.8em;background:none;border:none;color:var(--text);cursor:pointer;}
-    .menu-close {display:none;font-size:1.5em;background:none;border:none;color:var(--text);cursor:pointer;margin-bottom:15px;}
-    #nav-menu {display:flex;gap:20px;}
-
-    /* TOGGLE THEME */
     .toggle-theme{
       position:fixed;
       top:20px;
       right:20px;
-      width:38px;
-      height:38px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
+      padding:10px 15px;
       background:var(--accent);
       color:#fff;
       border:none;
-      border-radius:50%;
+      border-radius:5px;
       cursor:pointer;
-      font-size:1.2em;
       z-index:1000;
       transition: all 0.3s;
     }
-    .toggle-theme:hover{transform:scale(1.1);}
-
+    .botao-c{
+        display: none;
+    }
+    .menu-toggle {display:none;font-size:1.8em;background:none;border:none;color:var(--text);cursor:pointer;}
+    .menu-close {display:none;font-size:1.5em;background:none;border:none;color:var(--text);cursor:pointer;margin-bottom:15px;}
+    #nav-menu {display:flex;gap:20px;}
+    
     @media screen and (max-width:768px){
       #nav-menu {
         position:fixed;
@@ -127,7 +110,7 @@
         background:var(--card-bg);
         flex-direction:column;
         padding:50px 20px;
-        gap:20px;
+        gap:25px;
         transition:right 0.3s ease;
         z-index:999;
       }
@@ -135,26 +118,17 @@
       .menu-toggle {display:block;}
       .menu-close {display:block;align-self:flex-end;}
       nav a {font-size:1.2em;}
-
-      /* Toggle theme no celular: ao lado do hambúrguer */
-      header{
-        display:flex;
-        justify-content:space-between;
-        align-items:center;
-        padding:20px 5%;
-        position:relative;
+      .toggle-theme {
+        display:none;
+        top:20px;
+        right:60px;
       }
-      header h1{flex:1;text-align:left;}
-      .toggle-theme{
-        position:absolute;
-        left:50%;
-        transform:translateX(-50%);
-      }
+    
     }
   </style>
-  <script src="https://kit.fontawesome.com/a2e0e9d6d4.js" crossorigin="anonymous"></script>
 </head>
 <body data-theme="dark">
+
 <button class="toggle-theme" onclick="toggleTheme()">🌗</button>
 
 <header>
@@ -175,21 +149,105 @@
 
 <!-- HERO -->
 <section id="home" class="hero">
-  <div class="hero-content">
-    <h2>Olá, eu sou o Gu 👋</h2>
-    <h3 class="typing"></h3>
-    <p class="mini-bio">Transformo ideias em experiências digitais modernas e interativas, usando HTML, CSS e JavaScript.</p>
-    <div class="hero-buttons">
-      <a href="#projetos" class="btn">Ver Projetos</a>
-      <button onclick="baixarCV()" class="btn">📄 Baixar CV</button>
-    </div>
-    <div class="social">
-      <a href="#"><i class="fab fa-github"></i></a>
-      <a href="#"><i class="fab fa-linkedin"></i></a>
-      <a href="#"><i class="fab fa-instagram"></i></a>
-    </div>
+  <h2>Olá, eu sou o Gu 👋</h2>
+  <h3 class="typing"></h3>
+  <p class="mini-bio">Transformo ideias em experiências digitais modernas e interativas, usando HTML, CSS e JavaScript.</p>
+  <div class="hero-buttons">
+    <a href="#projetos" class="btn">Ver Projetos</a>
+    <button onclick="baixarCV()" class="btn">📄 Baixar CV</button>
+  </div>
+  <div class="social">
+    <a href="#"><i class="fab fa-github"></i></a>
+    <a href="#"><i class="fab fa-linkedin"></i></a>
+    <a href="#"><i class="fab fa-instagram"></i></a>
   </div>
 </section>
+
+<!-- SOBRE -->
+<section id="sobre" class="hidden">
+<h2>👨‍💻 Sobre Mim</h2>
+<div class="sobre">
+<img src="https://i.pinimg.com/564x/fe/13/d3/fe13d3e3eece8f9e87298bc457c7ad2d.jpg" alt="Gu Dev">
+<p>Sou o Gu, desenvolvedor web apaixonado por tecnologia e design digital. Adoro criar interfaces modernas, responsivas e interativas. Trabalho com HTML, CSS e JavaScript, sempre buscando transformar ideias em experiências digitais incríveis.</p>
+</div>
+</section>
+
+<!-- HABILIDADES -->
+<section id="habilidades" class="hidden">
+<h2>🧠 Habilidades</h2>
+<div class="skills">
+  <div class="skill"><p>HTML5</p><div class="bar"><div class="fill" style="width:95%;"></div></div></div>
+  <div class="skill"><p>CSS3</p><div class="bar"><div class="fill" style="width:90%;"></div></div></div>
+  <div class="skill"><p>JavaScript</p><div class="bar"><div class="fill" style="width:85%;"></div></div></div>
+  <div class="skill"><p>Responsividade</p><div class="bar"><div class="fill" style="width:90%;"></div></div></div>
+  <div class="skill"><p>Git & Versionamento</p><div class="bar"><div class="fill" style="width:75%;"></div></div></div>
+</div>
+</section>
+
+<!-- PROJETOS -->
+<section id="projetos" class="hidden">
+<h2>💻 Meus Projetos</h2>
+<div class="projects">
+  <div class="card"><h3>Landing Page Moderna</h3><p>Layout elegante e totalmente responsivo para startups e portfólios.</p></div>
+  <div class="card"><h3>Quiz Interativo</h3><p>Aplicação dinâmica com JavaScript que calcula pontuação em tempo real.</p></div>
+  <div class="card"><h3>Cardápio Digital</h3><p>Cardápio online otimizado para dispositivos móveis.</p></div>
+  <div class="card"><h3>Dashboard Admin</h3><p>Painel de controle moderno com estatísticas e gráficos interativos.</p></div>
+  <div class="card"><h3>Portfólio Criativo</h3><p>Design minimalista com animações suaves para artistas.</p></div>
+  <div class="card"><h3>App de Clima</h3><p>Aplicativo web que exibe clima em tempo real usando API externa.</p></div>
+  <div class="card"><h3>E-commerce Simples</h3><p>Loja online com carrinho e integração básica de pagamento.</p></div>
+  <div class="card"><h3>Blog Pessoal</h3><p>Plataforma de blog com CRUD em front-end.</p></div>
+  <div class="card"><h3>Galeria de Fotos</h3><p>Galeria interativa com filtros e animações hover.</p></div>
+  <div class="card"><h3>Agenda Web</h3><p>Aplicativo de organização de tarefas e eventos.</p></div>
+</div>
+</section>
+
+<!-- SERVIÇOS -->
+<section id="services" class="hidden">
+<h2>🛠 Serviços</h2>
+<div class="services">
+  <div class="service-card"><h3>Desenvolvimento Web</h3><p>Sites responsivos e modernos usando HTML, CSS e JS.</p></div>
+  <div class="service-card"><h3>Landing Pages</h3><p>Páginas promocionais atraentes e funcionais.</p></div>
+  <div class="service-card"><h3>Portfólios Profissionais</h3><p>Sites pessoais ou de clientes com design criativo.</p></div>
+  <div class="service-card"><h3>Aplicativos Web</h3><p>Apps front-end interativos para diversas funcionalidades.</p></div>
+</div>
+</section>
+
+<!-- TIMELINE -->
+<section id="timeline" class="hidden">
+<h2>📈 Experiência</h2>
+<div class="timeline">
+  <div class="event left"><h3>2022</h3><p>Estágio em Desenvolvimento Web</p></div>
+  <div class="event right"><h3>2023</h3><p>Projetos Freelancer Front-End</p></div>
+  <div class="event left"><h3>2024</h3><p>Criação de Portfólio Profissional e Aplicações Web</p></div>
+</div>
+</section>
+
+<!-- DEPOIMENTOS -->
+<section id="testimonials" class="hidden">
+<h2>💬 Depoimentos</h2>
+<div class="testimonials">
+  <div class="testimonial-card"><p>"Gu entregou um site incrível, totalmente responsivo e com design moderno!"</p><strong>- Cliente A</strong></div>
+  <div class="testimonial-card"><p>"Profissional dedicado e criativo, recomendo fortemente!"</p><strong>- Cliente B</strong></div>
+  <div class="testimonial-card"><p>"Excelente comunicação e resultado final perfeito!"</p><strong>- Cliente C</strong></div>
+</div>
+</section>
+
+<!-- CONTATO -->
+<section id="contato" class="hidden">
+<h2>📬 Contato</h2>
+<form onsubmit="enviarFormulario(event)">
+  <input type="text" id="nome" placeholder="Seu nome" required/>
+  <input type="email" id="email" placeholder="Seu e-mail" required/>
+  <textarea id="mensagem" rows="4" placeholder="Digite sua mensagem" required></textarea>
+  <button type="submit">Enviar</button>
+</form>
+<p id="retorno" style="margin-top:15px;"></p>
+<button onclick="baixarCV()" style="margin-top:20px;padding:10px 15px;border:none;border-radius:5px;background:var(--accent);color:white;cursor:pointer;" class="botao-c">📄 Baixar CV</button>
+</section>
+
+<footer>
+<p>© 2025 Gu Dev — Todos os direitos reservados.</p>
+</footer>
 
 <script>
 function toggleTheme(){
@@ -197,29 +255,51 @@ function toggleTheme(){
   body.dataset.theme = body.dataset.theme === 'dark' ? 'light' : 'dark';
 }
 
+// INTERSECTIONS
+const elements = document.querySelectorAll(".hidden");
+const observer = new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting) entry.target.classList.add("show");
+  });
+});
+elements.forEach(el=>observer.observe(el));
+
+// FORMULÁRIO
+function enviarFormulario(event){
+  event.preventDefault();
+  document.getElementById("retorno").innerText="✅ Mensagem enviada com sucesso!";
+  event.target.reset();
+}
+
+// BAIXAR CV
+function baixarCV(){
+  alert("Função simulada: aqui você pode baixar seu CV em PDF!");
+}
+
+// TYPING EFFECT
+const typingText = ["Desenvolvedor Front-End", "Criador de Portfólios", "Especialista em Responsividade"];
+let i = 0, j = 0, currentText = '', isDeleting = false;
+const typingElement = document.querySelector(".typing");
+
+function type(){
+  if(i >= typingText.length) i = 0;
+  const fullText = typingText[i];
+  currentText = isDeleting ? fullText.substring(0,j--) : fullText.substring(0,j++);
+  typingElement.textContent = currentText;
+  if(!isDeleting && j===fullText.length){isDeleting=true; setTimeout(type,1000);}
+  else if(isDeleting && j===0){isDeleting=false; i++; setTimeout(type,500);}
+  else setTimeout(type,100);
+}
+type();
+
 // MENU HAMBURGER
 const menuToggle = document.getElementById("menu-toggle");
 const menuClose = document.getElementById("menu-close");
 const navMenu = document.getElementById("nav-menu");
 
-menuToggle.addEventListener("click",()=>{navMenu.classList.add("show");});
-menuClose.addEventListener("click",()=>{navMenu.classList.remove("show");});
-navMenu.querySelectorAll("a").forEach(link=>link.addEventListener("click",()=>{navMenu.classList.remove("show");}));
-
-// Typing effect
-const typingText = ["Desenvolvedor Front-End", "Criador de Portfólios", "Especialista em Responsividade"];
-let i = 0, j = 0, currentText = '', isDeleting = false;
-const typingElement = document.querySelector(".typing");
-function type(){
-  if(i>=typingText.length)i=0;
-  const fullText=typingText[i];
-  currentText = isDeleting?fullText.substring(0,j--):fullText.substring(0,j++);
-  typingElement.textContent = currentText;
-  if(!isDeleting && j===fullText.length){isDeleting=true; setTimeout(type,1000);}
-  else if(isDeleting && j===0){isDeleting=false;i++;setTimeout(type,500);}
-  else setTimeout(type,100);
-}
-type();
+menuToggle.addEventListener("click", () => navMenu.classList.add("show"));
+menuClose.addEventListener("click", () => navMenu.classList.remove("show"));
+navMenu.querySelectorAll("a").forEach(link => link.addEventListener("click", () => navMenu.classList.remove("show")));
 </script>
 </body>
 </html>
