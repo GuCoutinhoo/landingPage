@@ -19,7 +19,6 @@
       --card-bg: #fff;
       --input-bg: #eee;
     }
-
     * {margin:0;padding:0;box-sizing:border-box;}
     body {font-family:"Poppins",sans-serif;background:var(--bg);color:var(--text);scroll-behavior:smooth;transition:all 0.3s;}
     header {display:flex;justify-content:space-between;align-items:center;padding:20px 10%;background:var(--card-bg);position:sticky;top:0;z-index:100;transition:all 0.3s;}
@@ -29,11 +28,14 @@
     section {padding:80px 10%;text-align:center;transition:all 0.3s;}
     .hero {display:flex;flex-direction:column;justify-content:center;align-items:center;height:90vh;background:linear-gradient(135deg,var(--bg),#1f2937);}
     .hero h2 {font-size:2.4em;margin-bottom:10px;}
-    .typing {color:var(--accent);border-right:2px solid var(--accent);white-space:nowrap;overflow:hidden;animation:typing 3s steps(22), blink 0.5s step-end infinite alternate;}
-    @keyframes typing {from{width:0}to{width:22ch}} @keyframes blink{50%{border-color:transparent}}
-    
-    .social {display:flex;justify-content:center;gap:15px;margin-top:30px;}
-    .social a {color:var(--accent);font-size:1.8em;transition:transform 0.3s;} .social a:hover{transform:scale(1.2);}
+    .typing {color:var(--accent);border-right:2px solid var(--accent);white-space:nowrap;overflow:hidden;}
+    .mini-bio {margin-top:15px; font-size:1.1em; color:#c9d1d9;}
+    .hero-buttons {margin-top:20px; display:flex; gap:15px; justify-content:center;}
+    .hero-buttons .btn {padding:10px 20px; border:none; border-radius:5px; background:var(--accent); color:white; cursor:pointer; transition:0.3s;}
+    .hero-buttons .btn:hover {background:#1f6feb;}
+    .social {display:flex;justify-content:center;gap:15px;margin-top:20px;}
+    .social a {color:var(--accent);font-size:1.8em;transition:transform 0.3s;} 
+    .social a:hover{transform:scale(1.2);}
     
     .sobre {display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:30px;}
     .sobre img {width:200px;border-radius:50%;border:3px solid var(--accent);}
@@ -96,16 +98,25 @@
   </nav>
 </header>
 
+<!-- HERO -->
 <section id="home" class="hero">
-  <h2>Olá, eu sou o Gu 👋</h2>
-  <h3 class="typing">Desenvolvedor Web Front-End</h3>
-  <div class="social">
-    <a href="#"><i class="fab fa-github"></i></a>
-    <a href="#"><i class="fab fa-linkedin"></i></a>
-    <a href="#"><i class="fab fa-instagram"></i></a>
+  <div class="hero-content">
+    <h2>Olá, eu sou o Gu 👋</h2>
+    <h3 class="typing"></h3>
+    <p class="mini-bio">Transformo ideias em experiências digitais modernas e interativas, usando HTML, CSS e JavaScript.</p>
+    <div class="hero-buttons">
+      <a href="#projetos" class="btn">Ver Projetos</a>
+      <button onclick="baixarCV()" class="btn">📄 Baixar CV</button>
+    </div>
+    <div class="social">
+      <a href="#"><i class="fab fa-github"></i></a>
+      <a href="#"><i class="fab fa-linkedin"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+    </div>
   </div>
 </section>
 
+<!-- SOBRE -->
 <section id="sobre" class="hidden">
 <h2>👨‍💻 Sobre Mim</h2>
 <div class="sobre">
@@ -114,6 +125,7 @@
 </div>
 </section>
 
+<!-- HABILIDADES -->
 <section id="habilidades" class="hidden">
 <h2>🧠 Habilidades</h2>
 <div class="skills">
@@ -125,6 +137,7 @@
 </div>
 </section>
 
+<!-- PROJETOS -->
 <section id="projetos" class="hidden">
 <h2>💻 Meus Projetos</h2>
 <div class="projects">
@@ -141,6 +154,7 @@
 </div>
 </section>
 
+<!-- SERVIÇOS -->
 <section id="services" class="hidden">
 <h2>🛠 Serviços</h2>
 <div class="services">
@@ -151,6 +165,7 @@
 </div>
 </section>
 
+<!-- TIMELINE -->
 <section id="timeline" class="hidden">
 <h2>📈 Experiência</h2>
 <div class="timeline">
@@ -160,6 +175,7 @@
 </div>
 </section>
 
+<!-- DEPOIMENTOS -->
 <section id="testimonials" class="hidden">
 <h2>💬 Depoimentos</h2>
 <div class="testimonials">
@@ -169,6 +185,7 @@
 </div>
 </section>
 
+<!-- CONTATO -->
 <section id="contato" class="hidden">
 <h2>📬 Contato</h2>
 <form onsubmit="enviarFormulario(event)">
@@ -206,6 +223,22 @@ function enviarFormulario(event){
 function baixarCV(){
   alert("Função simulada: aqui você pode baixar seu CV em PDF!");
 }
+
+// TYPING EFFECT
+const typingText = ["Desenvolvedor Front-End", "Criador de Portfólios", "Especialista em Responsividade"];
+let i = 0, j = 0, currentText = '', isDeleting = false;
+const typingElement = document.querySelector(".typing");
+
+function type(){
+  if(i >= typingText.length) i = 0;
+  const fullText = typingText[i];
+  currentText = isDeleting ? fullText.substring(0,j--) : fullText.substring(0,j++);
+  typingElement.textContent = currentText;
+  if(!isDeleting && j===fullText.length){isDeleting=true; setTimeout(type,1000);}
+  else if(isDeleting && j===0){isDeleting=false; i++; setTimeout(type,500);}
+  else setTimeout(type,100);
+}
+type();
 </script>
 </body>
 </html>
