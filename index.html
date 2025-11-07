@@ -1,305 +1,589 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Gu Dev | Portfólio Profissional</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
   <script src="https://kit.fontawesome.com/a2e0e9d6d4.js" crossorigin="anonymous"></script>
+
   <style>
-    :root {
-      --bg: #0d1117;
-      --text: #f0f6fc;
+    :root{
+      --bg: #0b0f14;
+      --card: rgba(18,22,26,0.7);
+      --glass: rgba(255,255,255,0.03);
+      --muted: #9aa6b2;
       --accent: #58a6ff;
-      --card-bg: #161b22;
-      --input-bg: #21262d;
+      --accent-2: #7cc1ff;
+      --glass-border: rgba(255,255,255,0.05);
+      --radius: 14px;
+      --max-width: 1100px;
     }
-    [data-theme="light"] {
-      --bg: #f5f5f5;
-      --text: #111;
-      --accent: #007bff;
-      --card-bg: #fff;
-      --input-bg: #eee;
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+    body{
+      font-family:"Poppins",system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
+      background:var(--bg);
+      color:#e6eef6;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.5;
+      overflow-x:hidden;
     }
-    * {margin:0;padding:0;box-sizing:border-box;}
-    body {font-family:"Poppins",sans-serif;background:var(--bg);color:var(--text);scroll-behavior:smooth;transition:all 0.3s;}
-    
-    header {display:flex;justify-content:space-between;align-items:center;padding:20px 10%;background:var(--card-bg);position:sticky;top:0;z-index:100;transition:all 0.3s;}
-    header h1 {color:var(--accent);font-size:1.8em;}
-    nav a {color:var(--text);margin-left:25px;text-decoration:none;font-weight:500;transition:color 0.3s;}
-    nav a:hover {color:var(--accent);}
 
-    .hero {display:flex;flex-direction:column;justify-content:center;align-items:center;height:90vh;background:linear-gradient(135deg,var(--bg),#1f2937);text-align:center;}
-    .hero h2 {font-size:2.8em;margin-bottom:10px;}
-    .typing {color:var(--accent);border-right:2px solid var(--accent);white-space:nowrap;overflow:hidden;}
-    .mini-bio {margin-top:15px; font-size:1.2em; color:#c9d1d9;}
-    .hero-buttons {margin-top:25px; display:flex; gap:15px; justify-content:center;flex-wrap:wrap;}
-    .hero-buttons .btn {padding:12px 25px; border:none; border-radius:5px; background:var(--accent); color:white; cursor:pointer; transition:0.3s; font-weight:600;}
-    .hero-buttons .btn:hover {background:#1f6feb;}
-    .social {display:flex;justify-content:center;gap:20px;margin-top:25px;}
-    .social a {color:var(--accent);font-size:2em;transition:transform 0.3s;} 
-    .social a:hover{transform:scale(1.3);}
-
-    .sobre {display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:30px;margin-top:40px;}
-    .sobre img {width:200px;border-radius:50%;border:4px solid var(--accent);}
-    .sobre p {max-width:550px;line-height:1.7;text-align:left;font-size:1.1em;}
-
-    .skills {max-width:650px;margin:0 auto;text-align:left;}
-    .skill {margin:20px 0;}
-    .bar {background:var(--input-bg);border-radius:10px;overflow:hidden;height:12px;}
-    .fill {height:12px;background:var(--accent);border-radius:10px;transition:width 1s;}
-
-    .projects {display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:30px;margin-top:40px;}
-    .card {background:var(--card-bg);padding:25px;border-radius:12px;transition:transform 0.3s,box-shadow 0.3s;}
-    .card:hover {transform:translateY(-5px);box-shadow:0 0 20px var(--accent);}
-    .card h3{color:var(--accent);margin-bottom:10px;}
-
-    .services {display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:30px;margin-top:40px;}
-    .service-card {background:var(--card-bg);padding:20px;border-radius:12px;transition:transform 0.3s,box-shadow 0.3s;}
-    .service-card:hover {transform:translateY(-5px);box-shadow:0 0 20px var(--accent);}
-
-    .timeline {position:relative;max-width:800px;margin:50px auto;}
-    .timeline::after {content:'';position:absolute;width:6px;background:var(--accent);top:0;bottom:0;left:50%;transform:translateX(-50%);}
-    .event {padding:20px 30px;position:relative;background:var(--card-bg);border-radius:6px;width:45%;margin:20px 0;}
-    .event.left{left:0;} .event.right{left:55%;}
-    .event::after{content:'';position:absolute;width:20px;height:20px;background:var(--accent);top:20px;right:-10px;border-radius:50%;border:4px solid var(--bg);}
-    .event.right::after{left:-10px;right:auto;border:4px solid var(--bg);}
-
-    .testimonials {display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:30px;margin-top:40px;}
-    .testimonial-card {background:var(--card-bg);padding:20px;border-radius:12px;transition:transform 0.3s,box-shadow 0.3s;}
-    .testimonial-card:hover {transform:translateY(-5px);box-shadow:0 0 20px var(--accent);}
-
-    form {display:flex;flex-direction:column;max-width:450px;margin:0 auto;gap:15px;}
-    input,textarea,button {padding:12px;border:none;border-radius:5px;outline:none;transition:all 0.3s;font-size:1em;}
-    input,textarea{background:var(--input-bg);color:var(--text);}
-    button{background:var(--accent);color:white;font-weight:bold;cursor:pointer;}
-    button:hover{background:#1f6feb;}
-
-    footer{background:var(--card-bg);text-align:center;padding:20px;margin-top:40px;color:#8b949e;}
-
-    .hidden {opacity:0;transform:translateY(40px);transition:all 0.8s ease;}
-    .show{opacity:1;transform:translateY(0);}
-
-    .toggle-theme{
+    /* ---------- Header ---------- */
+    header{
       position:fixed;
-      top:20px;
-      right:20px;
-      padding:10px 15px;
-      background:var(--accent);
-      color:#fff;
-      border:none;
-      border-radius:5px;
+      top:12px;
+      left:50%;
+      transform:translateX(-50%);
+      width:calc(100% - 48px);
+      max-width:var(--max-width);
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border:1px solid var(--glass-border);
+      backdrop-filter: blur(8px) saturate(120%);
+      border-radius:12px;
+      padding:12px 18px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      z-index:1200;
+      box-shadow:0 8px 30px rgba(2,6,23,0.6);
+    }
+    header h1{font-size:1.1rem;color:var(--accent);letter-spacing:0.6px}
+    nav{display:flex;gap:18px;align-items:center}
+    nav a{color:var(--muted);text-decoration:none;font-weight:600;font-size:0.95rem;padding:8px;border-radius:8px;transition:all .18s}
+    nav a:hover, nav a.active{color:#fff;background:linear-gradient(90deg, rgba(88,166,255,0.08), rgba(124,193,255,0.04))}
+
+    .menu-toggle{display:none;background:none;border:none;color:var(--muted);font-size:1.4rem;cursor:pointer}
+
+    /* ---------- HERO ---------- */
+    .hero{
+      min-height:92vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:120px 24px 60px;
+      position:relative;
+      text-align:center;
+      overflow:hidden;
+    }
+
+    .hero::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        linear-gradient(180deg, rgba(2,6,23,0.56), rgba(2,6,23,0.65)),
+        url('https://images.unsplash.com/photo-1506765515384-028b60a970df?auto=format&fit=crop&w=1800&q=80') center/cover no-repeat;
+      z-index:-2;
+      transform:scale(1.02);
+      filter:contrast(0.9) saturate(1.05);
+    }
+    .hero::after{
+      /* subtle vignette */
+      content:"";
+      position:absolute; inset:0;
+      background: radial-gradient(ellipse at center, rgba(0,0,0,0) 40%, rgba(0,0,0,0.5) 100%);
+      z-index:-1;
+    }
+
+    .hero-inner{
+      max-width:1000px;
+      width:100%;
+      display:grid;
+      grid-template-columns:1fr;
+      gap:22px;
+      align-items:center;
+      justify-items:center;
+      padding:28px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.015));
+      border:1px solid var(--glass-border);
+      border-radius:16px;
+      box-shadow:0 12px 40px rgba(2,6,23,0.6);
+      backdrop-filter: blur(6px) saturate(120%);
+    }
+
+    .hero-title{font-size:2.6rem;font-weight:700;line-height:1.02}
+    .hero-sub{font-size:1.05rem;color:var(--muted);max-width:760px}
+
+    .typing{
+      color:var(--accent);
+      font-weight:700;
+      display:inline-block;
+      min-width:240px;
+      border-right:2px solid rgba(88,166,255,0.9);
+      padding-right:6px;
+      margin-left:6px;
+      white-space:nowrap;
+      overflow:hidden;
+    }
+
+    .hero-ctas{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:10px}
+    .btn{
+      background:linear-gradient(90deg,var(--accent),var(--accent-2));
+      color:#041022;
+      padding:11px 18px;border-radius:10px;border:none;font-weight:700;cursor:pointer;text-decoration:none;
+      box-shadow:0 6px 18px rgba(88,166,255,0.12), inset 0 -2px 6px rgba(0,0,0,0.12);
+      transition:transform .18s, box-shadow .18s;
+    }
+    .btn.secondary{
+      background:transparent;color:var(--accent);border:1px solid rgba(88,166,255,0.12);
+      box-shadow:none;
+    }
+    .btn:hover{transform:translateY(-3px)}
+
+    .socials{display:flex;gap:14px;margin-top:8px}
+    .socials a{color:var(--accent);font-size:1.35rem;transition:transform .18s}
+    .socials a:hover{transform:translateY(-4px)}
+
+    /* ---------- CONTENT SECTIONS ---------- */
+    main{max-width:var(--max-width);margin:40px auto;padding:20px}
+    section{margin:36px 0;padding:8px 6px}
+
+    h2.section-title{font-size:1.5rem;margin-bottom:14px;color:#dfeaf7}
+
+    /* SOBRE */
+    .sobre-wrap{display:flex;gap:28px;align-items:center;flex-wrap:wrap}
+    .sobre-photo{
+      width:200px;height:200px;border-radius:18px;overflow:hidden;border:2px solid rgba(88,166,255,0.12);
+      flex:0 0 200px;background:linear-gradient(135deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    }
+    .sobre-photo img{width:100%;height:100%;object-fit:cover;display:block}
+    .sobre-text{flex:1;min-width:260px;color:var(--muted);line-height:1.6}
+
+    /* HABILIDADES */
+    .skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+    .skill-card{background:var(--card);padding:14px;border-radius:12px;border:1px solid var(--glass-border)}
+    .skill-title{font-weight:600;color:#e9f4ff;margin-bottom:8px}
+    .progress{height:10px;background:rgba(255,255,255,0.03);border-radius:8px;overflow:hidden}
+    .progress > i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--accent-2));border-radius:8px}
+
+    /* PROJETOS */
+    .projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
+    .project-card{
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border:1px solid var(--glass-border);
+      border-radius:14px;
+      padding:16px;
+      overflow:hidden;
+      transition:transform .35s cubic-bezier(.16,.9,.3,1), box-shadow .25s;
+      transform:translateY(0);
       cursor:pointer;
-      z-index:1000;
-      transition: all 0.3s;
     }
-    .botao-c{
-        display: none;
+    .project-card:hover{
+      transform:translateY(-10px) scale(1.02);
+      box-shadow: 0 18px 40px rgba(2,6,23,0.6), 0 6px 18px rgba(88,166,255,0.08);
     }
-    .menu-toggle {display:none;font-size:1.8em;background:none;border:none;color:var(--text);cursor:pointer;}
-    .menu-close {display:none;font-size:1.5em;background:none;border:none;color:var(--text);cursor:pointer;margin-bottom:15px;}
-    #nav-menu {display:flex;gap:20px;}
-    
-    @media screen and (max-width:768px){
-      #nav-menu {
-        position:fixed;
-        top:0;
-        right:-100%;
-        height:100%;
-        width:250px;
-        background:var(--card-bg);
-        flex-direction:column;
-        padding:50px 20px;
-        gap:25px;
-        transition:right 0.3s ease;
-        z-index:999;
-      }
-      #nav-menu.show {right:0;}
-      .menu-toggle {display:block;}
-      .menu-close {display:block;align-self:flex-end;}
-      nav a {font-size:1.2em;}
-      .toggle-theme {
-        display:none;
-        top:20px;
-        right:60px;
-      }
-    
+    .project-thumb{height:140px;border-radius:10px;overflow:hidden;margin-bottom:12px}
+    .project-thumb img{width:100%;height:100%;object-fit:cover;display:block}
+    .project-title{font-weight:700;color:var(--accent);margin-bottom:6px}
+    .project-desc{color:var(--muted);font-size:0.95rem}
+
+    /* SERVICES */
+    .services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
+    .service{
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius:12px;padding:16px;border:1px solid var(--glass-border);
+      transition:transform .22s, box-shadow .22s;
     }
+    .service:hover{transform:translateY(-8px);box-shadow:0 20px 44px rgba(2,6,23,0.6)}
+    .service i{font-size:1.6rem;color:var(--accent);display:inline-block;margin-bottom:10px}
+
+    /* TIMELINE */
+    .timeline{position:relative;padding-left:18px;margin-top:6px;color:var(--muted)}
+    .timeline::before{content:"";position:absolute;left:6px;top:0;bottom:0;width:3px;background:linear-gradient(180deg,var(--accent),var(--accent-2));border-radius:6px}
+    .timeline-item{position:relative;padding:10px 14px 10px 22px;margin-bottom:16px;background:rgba(255,255,255,0.01);border-radius:10px;border:1px solid rgba(255,255,255,0.02)}
+    .timeline-item::before{content:"";position:absolute;left:-7px;top:18px;width:14px;height:14px;border-radius:50%;background:var(--bg);border:3px solid var(--accent)}
+    .timeline-item h4{margin-bottom:6px;color:#eaf6ff}
+
+    /* TESTIMONIALS */
+    .testimonials-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+    .testimonial{background:var(--card);padding:14px;border-radius:12px;border:1px solid var(--glass-border)}
+
+    /* CONTACT */
+    .contact-card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:18px;border-radius:12px;border:1px solid var(--glass-border)}
+    label{display:block;font-weight:600;margin-bottom:6px;color:#dfeaf7}
+    input,textarea{width:100%;padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,0.03);background:transparent;color:var(--muted);resize:vertical}
+    .contact-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:8px}
+
+    footer{margin-top:34px;padding:30px 18px;text-align:center;color:var(--muted);font-size:0.95rem}
+
+    /* ---------- APPEAR ANIMATIONS ---------- */
+    .reveal{
+      opacity:0;
+      transform:translateY(18px) scale(0.995);
+      transition:opacity .7s ease, transform .7s cubic-bezier(.2,.9,.3,1);
+      will-change:transform,opacity;
+    }
+    .reveal.show{
+      opacity:1;transform:none;
+    }
+
+    /* small screens */
+    @media (max-width:900px){
+      header{left:0;transform:none;width:100%;padding:10px 14px;border-radius:0;top:0}
+      .hero-inner{padding:18px}
+      .hero-title{font-size:2rem}
+      .hero-sub{font-size:0.98rem}
+      .sobre-photo{width:140px;height:140px;flex:0 0 140px}
+    }
+    @media (max-width:560px){
+      nav{display:none}
+      .menu-toggle{display:block}
+      .hero-title{font-size:1.8rem}
+    }
+
   </style>
 </head>
-<body data-theme="dark">
+<body>
 
-<button class="toggle-theme" onclick="toggleTheme()">🌗</button>
+  <header>
+    <h1>Gu Dev</h1>
+    <nav id="nav">
+      <a href="#home" class="active">Início</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#habilidades">Habilidades</a>
+      <a href="#projetos">Projetos</a>
+      <a href="#services">Serviços</a>
+      <a href="#timeline">Experiência</a>
+      <a href="#testimonials">Depoimentos</a>
+      <a href="#contato">Contato</a>
+    </nav>
+    <button class="menu-toggle" aria-label="Abrir menu" onclick="toggleMobileMenu()">☰</button>
+  </header>
 
-<header>
-  <h1>Gu Dev</h1>
-  <button id="menu-toggle" class="menu-toggle">☰</button>
-  <nav id="nav-menu">
-    <button id="menu-close" class="menu-close">✖</button>
-    <a href="#home">Início</a>
-    <a href="#sobre">Sobre</a>
-    <a href="#habilidades">Habilidades</a>
-    <a href="#projetos">Projetos</a>
-    <a href="#services">Serviços</a>
-    <a href="#timeline">Experiência</a>
-    <a href="#testimonials">Depoimentos</a>
-    <a href="#contato">Contato</a>
-  </nav>
-</header>
+  <!-- HERO -->
+  <section id="home" class="hero" aria-label="Seção inicial">
+    <div class="hero-inner reveal">
+      <div>
+        <div style="display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap">
+          <h2 class="hero-title">Olá, eu sou o Gu</h2>
+          <!-- small accent badge -->
+          <span style="background:linear-gradient(90deg,var(--accent),var(--accent-2));padding:6px 10px;border-radius:999px;color:#041022;font-weight:700;font-size:0.85rem">Front-End</span>
+        </div>
 
-<!-- HERO -->
-<section id="home" class="hero">
-  <h2>Olá, eu sou o Gu 👋</h2>
-  <h3 class="typing"></h3>
-  <p class="mini-bio">Transformo ideias em experiências digitais modernas e interativas, usando HTML, CSS e JavaScript.</p>
-  <div class="hero-buttons">
-    <a href="#projetos" class="btn">Ver Projetos</a>
-    <button onclick="baixarCV()" class="btn">📄 Baixar CV</button>
-  </div>
-  <div class="social">
-    <a href="#"><i class="fab fa-github"></i></a>
-    <a href="#"><i class="fab fa-linkedin"></i></a>
-    <a href="#"><i class="fab fa-instagram"></i></a>
-  </div>
-</section>
+        <p class="hero-sub" style="margin-top:8px">
+          <span>Transformo ideias em experiências digitais elegantes, rápidas e responsivas.</span>
+          <span class="typing" aria-live="polite"></span>
+        </p>
 
-<!-- SOBRE -->
-<section id="sobre" class="hidden">
-<h2>👨‍💻 Sobre Mim</h2>
-<div class="sobre">
-<img src="https://i.pinimg.com/564x/fe/13/d3/fe13d3e3eece8f9e87298bc457c7ad2d.jpg" alt="Gu Dev">
-<p>Sou o Gu, desenvolvedor web apaixonado por tecnologia e design digital. Adoro criar interfaces modernas, responsivas e interativas. Trabalho com HTML, CSS e JavaScript, sempre buscando transformar ideias em experiências digitais incríveis.</p>
-</div>
-</section>
+        <div class="hero-ctas">
+          <a class="btn" href="#projetos">Ver Projetos</a>
+          <button class="btn secondary" onclick="baixarCV()">📄 Baixar CV</button>
+        </div>
 
-<!-- HABILIDADES -->
-<section id="habilidades" class="hidden">
-<h2>🧠 Habilidades</h2>
-<div class="skills">
-  <div class="skill"><p>HTML5</p><div class="bar"><div class="fill" style="width:95%;"></div></div></div>
-  <div class="skill"><p>CSS3</p><div class="bar"><div class="fill" style="width:90%;"></div></div></div>
-  <div class="skill"><p>JavaScript</p><div class="bar"><div class="fill" style="width:85%;"></div></div></div>
-  <div class="skill"><p>Responsividade</p><div class="bar"><div class="fill" style="width:90%;"></div></div></div>
-  <div class="skill"><p>Git & Versionamento</p><div class="bar"><div class="fill" style="width:75%;"></div></div></div>
-</div>
-</section>
+        <div class="socials" aria-hidden="false" style="justify-content:center;margin-top:12px">
+          <a href="#" title="Github"><i class="fab fa-github"></i></a>
+          <a href="#" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+          <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<!-- PROJETOS -->
-<section id="projetos" class="hidden">
-<h2>💻 Meus Projetos</h2>
-<div class="projects">
-  <div class="card"><h3>Landing Page Moderna</h3><p>Layout elegante e totalmente responsivo para startups e portfólios.</p></div>
-  <div class="card"><h3>Quiz Interativo</h3><p>Aplicação dinâmica com JavaScript que calcula pontuação em tempo real.</p></div>
-  <div class="card"><h3>Cardápio Digital</h3><p>Cardápio online otimizado para dispositivos móveis.</p></div>
-  <div class="card"><h3>Dashboard Admin</h3><p>Painel de controle moderno com estatísticas e gráficos interativos.</p></div>
-  <div class="card"><h3>Portfólio Criativo</h3><p>Design minimalista com animações suaves para artistas.</p></div>
-  <div class="card"><h3>App de Clima</h3><p>Aplicativo web que exibe clima em tempo real usando API externa.</p></div>
-  <div class="card"><h3>E-commerce Simples</h3><p>Loja online com carrinho e integração básica de pagamento.</p></div>
-  <div class="card"><h3>Blog Pessoal</h3><p>Plataforma de blog com CRUD em front-end.</p></div>
-  <div class="card"><h3>Galeria de Fotos</h3><p>Galeria interativa com filtros e animações hover.</p></div>
-  <div class="card"><h3>Agenda Web</h3><p>Aplicativo de organização de tarefas e eventos.</p></div>
-</div>
-</section>
+  <main>
 
-<!-- SERVIÇOS -->
-<section id="services" class="hidden">
-<h2>🛠 Serviços</h2>
-<div class="services">
-  <div class="service-card"><h3>Desenvolvimento Web</h3><p>Sites responsivos e modernos usando HTML, CSS e JS.</p></div>
-  <div class="service-card"><h3>Landing Pages</h3><p>Páginas promocionais atraentes e funcionais.</p></div>
-  <div class="service-card"><h3>Portfólios Profissionais</h3><p>Sites pessoais ou de clientes com design criativo.</p></div>
-  <div class="service-card"><h3>Aplicativos Web</h3><p>Apps front-end interativos para diversas funcionalidades.</p></div>
-</div>
-</section>
+    <!-- SOBRE -->
+    <section id="sobre" class="reveal">
+      <h2 class="section-title">👨‍💻 Sobre Mim</h2>
+      <div class="sobre-wrap">
+        <div class="sobre-photo" aria-hidden="false">
+          <img src="https://i.pinimg.com/564x/fe/13/d3/fe13d3e3eece8f9e87298bc457c7ad2d.jpg" alt="Foto do Gu">
+        </div>
+        <div class="sobre-text">
+          <p>Sou o Gu, desenvolvedor web com foco em front-end. Crio interfaces limpas, acessíveis e responsivas, priorizando performance e usabilidade. Trabalho com HTML, CSS e JavaScript puro, além de práticas modernas de animação e experiência do usuário.</p>
+          <p style="margin-top:10px;color:var(--muted)">Atendo clientes em Workana e projetos freelancer — entrego com documentação, responsividade e atenção ao detalhe.</p>
+        </div>
+      </div>
+    </section>
 
-<!-- TIMELINE -->
-<section id="timeline" class="hidden">
-<h2>📈 Experiência</h2>
-<div class="timeline">
-  <div class="event left"><h3>2022</h3><p>Estágio em Desenvolvimento Web</p></div>
-  <div class="event right"><h3>2023</h3><p>Projetos Freelancer Front-End</p></div>
-  <div class="event left"><h3>2024</h3><p>Criação de Portfólio Profissional e Aplicações Web</p></div>
-</div>
-</section>
+    <!-- HABILIDADES -->
+    <section id="habilidades" class="reveal">
+      <h2 class="section-title">🧠 Habilidades</h2>
+      <div class="skills-grid">
+        <div class="skill-card">
+          <div class="skill-title">HTML5</div>
+          <div class="progress" aria-hidden="true"><i style="width:95%"></i></div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-title">CSS3</div>
+          <div class="progress"><i style="width:92%"></i></div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-title">JavaScript</div>
+          <div class="progress"><i style="width:86%"></i></div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-title">Responsividade</div>
+          <div class="progress"><i style="width:90%"></i></div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-title">UX & UI</div>
+          <div class="progress"><i style="width:84%"></i></div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-title">Git & Versionamento</div>
+          <div class="progress"><i style="width:75%"></i></div>
+        </div>
+      </div>
+    </section>
 
-<!-- DEPOIMENTOS -->
-<section id="testimonials" class="hidden">
-<h2>💬 Depoimentos</h2>
-<div class="testimonials">
-  <div class="testimonial-card"><p>"Gu entregou um site incrível, totalmente responsivo e com design moderno!"</p><strong>- Cliente A</strong></div>
-  <div class="testimonial-card"><p>"Profissional dedicado e criativo, recomendo fortemente!"</p><strong>- Cliente B</strong></div>
-  <div class="testimonial-card"><p>"Excelente comunicação e resultado final perfeito!"</p><strong>- Cliente C</strong></div>
-</div>
-</section>
+    <!-- PROJETOS -->
+    <section id="projetos" class="reveal">
+      <h2 class="section-title">💻 Projetos</h2>
+      <div class="projects-grid">
+        <!-- exemplo de projeto (replicar / alterar conforme quiser) -->
+        <article class="project-card" tabindex="0">
+          <div class="project-thumb"><img src="https://workana.s3.amazonaws.com/portfolios/yl/f4788567b4f51c3594cfe3ad85bdaa68/Capa.png?response-content-disposition=inline%3Bfilename%3D%22Capa.png%22&response-content-type=image%2Fpng&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA33COQEVTJSIXHA73%2F20251107%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20251107T164728Z&X-Amz-SignedHeaders=host&X-Amz-Expires=21600&X-Amz-Signature=0820bf099845c77a15083d66c25d018db33b5a2e8587983f9925e9b08f0c0cf6" alt="Landing Page"></div>
+          <div class="project-title">Landing Page Moderna</div>
+          <div class="project-desc">Layout elegante e totalmente responsivo para startups e portfólios.</div>
+        </article>
 
-<!-- CONTATO -->
-<section id="contato" class="hidden">
-<h2>📬 Contato</h2>
-<form onsubmit="enviarFormulario(event)">
-  <input type="text" id="nome" placeholder="Seu nome" required/>
-  <input type="email" id="email" placeholder="Seu e-mail" required/>
-  <textarea id="mensagem" rows="4" placeholder="Digite sua mensagem" required></textarea>
-  <button type="submit">Enviar</button>
-</form>
-<p id="retorno" style="margin-top:15px;"></p>
-<button onclick="baixarCV()" style="margin-top:20px;padding:10px 15px;border:none;border-radius:5px;background:var(--accent);color:white;cursor:pointer;" class="botao-c">📄 Baixar CV</button>
-</section>
+        <article class="project-card" tabindex="0">
+          <div class="project-thumb"><img src="https://workana.s3.amazonaws.com/portfolios/vc/91ee6008cd7c55d050b733de45ed1e52/ingles1.PNG?response-content-disposition=inline%3Bfilename%3D%22ingles-1.PNG%22&response-content-type=image%2Fpng&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA33COQEVTJSIXHA73%2F20251107%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20251107T165419Z&X-Amz-SignedHeaders=host&X-Amz-Expires=21600&X-Amz-Signature=e55d81fcd7ec1dda664031765ade5e278f38893c7c78ec16d7932fb0febc0a8d" alt="Quiz"></div>
+          <div class="project-title">Quiz Interativo</div>
+          <div class="project-desc">Aplicação dinâmica em JavaScript que calcula pontuação em tempo real.</div>
+        </article>
 
-<footer>
-<p>© 2025 Gu Dev — Todos os direitos reservados.</p>
-</footer>
+        <article class="project-card" tabindex="0">
+          <div class="project-thumb"><img src="https://www.hubt.com.br/site-images/features-c650.jpg" alt="Cardápio Digital"></div>
+          <div class="project-title">Cardápio Digital</div>
+          <div class="project-desc">Cardápio otimizado para celulares com navegação simples.</div>
+        </article>
 
-<script>
-function toggleTheme(){
-  const body = document.body;
-  body.dataset.theme = body.dataset.theme === 'dark' ? 'light' : 'dark';
-}
+        <article class="project-card" tabindex="0">
+          <div class="project-thumb"><img src="https://workana.s3.amazonaws.com/portfolios/im/ed8cfac0d0ff1ebacfb25604810f595a/Capa.PNG?response-content-disposition=inline%3Bfilename%3D%22Capa.PNG%22&response-content-type=image%2Fpng&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA33COQEVTJSIXHA73%2F20251107%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20251107T165323Z&X-Amz-SignedHeaders=host&X-Amz-Expires=21600&X-Amz-Signature=a358eb035b2d9afca1792890d411e957d041df5959d849719fd81c21c5d87ec6" alt="Dashboard"></div>
+          <div class="project-title">Site E-commerce</div>
+          <div class="project-desc">Site e-commerce de roupas completo e responsivo</div>
+        </article>
+      </div>
+    </section>
 
-// INTERSECTIONS
-const elements = document.querySelectorAll(".hidden");
-const observer = new IntersectionObserver((entries)=>{
-  entries.forEach(entry=>{
-    if(entry.isIntersecting) entry.target.classList.add("show");
-  });
-});
-elements.forEach(el=>observer.observe(el));
+    <!-- SERVICES -->
+    <section id="services" class="reveal">
+      <h2 class="section-title">🛠 Serviços</h2>
+      <div class="services-grid">
+        <div class="service" tabindex="0">
+          <i class="fa-solid fa-code"></i>
+          <h3 style="margin:6px 0;color:#eaf6ff">Desenvolvimento Web</h3>
+          <p style="color:var(--muted)">Sites responsivos e performáticos usando HTML, CSS e JavaScript puro. Entrega com otimização e documentação.</p>
+        </div>
 
-// FORMULÁRIO
-function enviarFormulario(event){
-  event.preventDefault();
-  document.getElementById("retorno").innerText="✅ Mensagem enviada com sucesso!";
-  event.target.reset();
-}
+        <div class="service" tabindex="0">
+          <i class="fa-solid fa-bullhorn"></i>
+          <h3 style="margin:6px 0;color:#eaf6ff">Landing Pages</h3>
+          <p style="color:var(--muted)">Páginas de conversão, rápidas e com design otimizado para ação do usuário.</p>
+        </div>
 
-// BAIXAR CV
-function baixarCV(){
-  alert("Função simulada: aqui você pode baixar seu CV em PDF!");
-}
+        <div class="service" tabindex="0">
+          <i class="fa-solid fa-briefcase"></i>
+          <h3 style="margin:6px 0;color:#eaf6ff">Portfólios Profissionais</h3>
+          <p style="color:var(--muted)">Sites pessoais e portfólios para destacar projetos, com foco em estética e usabilidade.</p>
+        </div>
 
-// TYPING EFFECT
-const typingText = ["Desenvolvedor Front-End", "Criador de Portfólios", "Especialista em Responsividade"];
-let i = 0, j = 0, currentText = '', isDeleting = false;
-const typingElement = document.querySelector(".typing");
+        <div class="service" tabindex="0">
+          <i class="fa-solid fa-mobile-screen-button"></i>
+          <h3 style="margin:6px 0;color:#eaf6ff">Apps Web</h3>
+          <p style="color:var(--muted)">Interfaces interativas e componentes reutilizáveis para aplicações web.</p>
+        </div>
+      </div>
+    </section>
 
-function type(){
-  if(i >= typingText.length) i = 0;
-  const fullText = typingText[i];
-  currentText = isDeleting ? fullText.substring(0,j--) : fullText.substring(0,j++);
-  typingElement.textContent = currentText;
-  if(!isDeleting && j===fullText.length){isDeleting=true; setTimeout(type,1000);}
-  else if(isDeleting && j===0){isDeleting=false; i++; setTimeout(type,500);}
-  else setTimeout(type,100);
-}
-type();
+    <!-- TIMELINE -->
+    <section id="timeline" class="reveal">
+      <h2 class="section-title">📈 Experiência</h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <h4>2022 — Estágio</h4>
+          <p class="muted">Estágio em desenvolvimento web: criação de páginas e manutenção de layout.</p>
+        </div>
+        <div class="timeline-item">
+          <h4>2023 — Freelancer</h4>
+          <p class="muted">Projetos para clientes: landing pages, portfólios e pequenas aplicações.</p>
+        </div>
+        <div class="timeline-item">
+          <h4>2024 — Portfólio</h4>
+          <p class="muted">Desenvolvimento de portfólio profissional, dashboards e componentes reutilizáveis.</p>
+        </div>
+      </div>
+    </section>
 
-// MENU HAMBURGER
-const menuToggle = document.getElementById("menu-toggle");
-const menuClose = document.getElementById("menu-close");
-const navMenu = document.getElementById("nav-menu");
+    <!-- TESTIMONIALS -->
+    <section id="testimonials" class="reveal">
+      <h2 class="section-title">💬 Depoimentos</h2>
+      <div class="testimonials-grid">
+        <div class="testimonial">
+          <p style="color:var(--muted)">"Gu entregou um site incrível, totalmente responsivo e com design moderno!"</p>
+          <strong>- Cliente A</strong>
+        </div>
+        <div class="testimonial">
+          <p style="color:var(--muted)">"Profissional dedicado e criativo, recomendo fortemente!"</p>
+          <strong>- Cliente B</strong>
+        </div>
+        <div class="testimonial">
+          <p style="color:var(--muted)">"Excelente comunicação e resultado final perfeito!"</p>
+          <strong>- Cliente C</strong>
+        </div>
+      </div>
+    </section>
 
-menuToggle.addEventListener("click", () => navMenu.classList.add("show"));
-menuClose.addEventListener("click", () => navMenu.classList.remove("show"));
-navMenu.querySelectorAll("a").forEach(link => link.addEventListener("click", () => navMenu.classList.remove("show")));
-</script>
+    <!-- CONTATO -->
+    <section id="contato" class="reveal">
+      <h2 class="section-title">📬 Contato</h2>
+      <div class="contact-card">
+        <form id="contactForm">
+          <label for="nome">Nome</label>
+          <input id="nome" name="nome" required placeholder="Seu nome">
+
+          <label for="email" style="margin-top:8px">E-mail</label>
+          <input id="email" name="email" type="email" required placeholder="seu@exemplo.com">
+
+          <label for="mensagem" style="margin-top:8px">Mensagem</label>
+          <textarea id="mensagem" name="mensagem" rows="5" placeholder="Como posso ajudar?" required></textarea>
+
+          <div class="contact-actions">
+            <button type="submit" class="btn">Enviar Mensagem</button>
+            <button type="button" class="btn secondary" onclick="baixarCV()">📄 Baixar CV</button>
+          </div>
+        </form>
+        <p id="formStatus" style="margin-top:10px;color:var(--muted)"></p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div>© 2025 Gu Dev — Todos os direitos reservados.</div>
+  </footer>
+
+  <script>
+    /* ---------- UTIL: SMOOTH SCROLL + ACTIVE NAV ---------- */
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', (e)=>{
+        const href = a.getAttribute('href');
+        if(!href || href === '#') return;
+        e.preventDefault();
+        const el = document.querySelector(href);
+        if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
+        // close mobile menu if open
+        if(window._mobileMenuOpen) toggleMobileMenu(false);
+      });
+    });
+
+    // highlight active nav item on scroll
+    const sections = document.querySelectorAll('main section, #home');
+    const navLinks = document.querySelectorAll('header nav a');
+    const obsNav = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
+          navLinks.forEach(a=>a.classList.remove('active'));
+          const id = entry.target.id;
+          const link = document.querySelector('header nav a[href="#'+id+'"]');
+          if(link) link.classList.add('active');
+        }
+      });
+    }, {threshold:0.45});
+    sections.forEach(s=>obsNav.observe(s));
+
+    /* ---------- REVEAL ON SCROLL ---------- */
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
+          entry.target.classList.add('show');
+        }
+      });
+    }, {threshold:0.18});
+    reveals.forEach(r=>observer.observe(r));
+
+    /* ---------- TYPING EFFECT (TYPEWRITER) ---------- */
+    const typingTexts = ["Desenvolvedor Front-End", "Criador de Portfólios", "Especialista em Responsividade"];
+    let tIndex = 0, charIndex = 0, deleting = false;
+    const typingEl = document.querySelector('.typing');
+
+    function typeTick(){
+      const full = typingTexts[tIndex];
+      if(!deleting){
+        charIndex++;
+        typingEl.textContent = full.substring(0,charIndex);
+        if(charIndex === full.length){
+          deleting = true;
+          setTimeout(typeTick, 1200);
+          return;
+        }
+      } else {
+        charIndex--;
+        typingEl.textContent = full.substring(0,charIndex);
+        if(charIndex === 0){
+          deleting = false;
+          tIndex = (tIndex + 1) % typingTexts.length;
+        }
+      }
+      setTimeout(typeTick, deleting ? 40 : 70);
+    }
+    // start after small delay
+    setTimeout(typeTick, 700);
+
+    /* ---------- FORM HANDLING (SIMULADO) ---------- */
+    document.getElementById('contactForm').addEventListener('submit', function(e){
+      e.preventDefault();
+      const status = document.getElementById('formStatus');
+      status.textContent = "✅ Mensagem enviada — responderei em breve!";
+      this.reset();
+    });
+
+    function baixarCV(){
+      alert("Simulação: aqui você pode adicionar um link para download do seu CV em PDF.");
+    }
+
+    /* ---------- ACCESSIBLE KEYBOARD FOCUS FOR CARDS ---------- */
+    document.querySelectorAll('.project-card, .service').forEach(el=>{
+      el.addEventListener('keydown', (e)=>{
+        if(e.key === 'Enter' || e.key === ' '){
+          e.preventDefault();
+          el.click();
+        }
+      });
+    });
+
+    /* ---------- MOBILE MENU (simples) ---------- */
+    window._mobileMenuOpen = false;
+    function toggleMobileMenu(force){
+      const nav = document.getElementById('nav');
+      const shown = typeof force === 'boolean' ? force : !window._mobileMenuOpen;
+      window._mobileMenuOpen = shown;
+      if(shown){
+        nav.style.position = 'fixed';
+        nav.style.right = '16px';
+        nav.style.top = '64px';
+        nav.style.background = 'linear-gradient(180deg, rgba(2,6,23,0.95), rgba(2,6,23,0.98))';
+        nav.style.padding = '14px';
+        nav.style.borderRadius = '12px';
+        nav.style.boxShadow = '0 16px 40px rgba(2,6,23,0.6)';
+        nav.style.display = 'flex';
+        nav.style.flexDirection = 'column';
+        nav.style.gap = '10px';
+      } else {
+        nav.style.display = '';
+        nav.style.position = '';
+        nav.style.right = '';
+        nav.style.top = '';
+        nav.style.background = '';
+        nav.style.padding = '';
+        nav.style.borderRadius = '';
+        nav.style.boxShadow = '';
+      }
+    }
+
+    /* ---------- OPTIONAL: keyboard shortcut to focus CV button (for demo) ---------- */
+    document.addEventListener('keydown', (e) => {
+      if((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k'){
+        baixarCV();
+      }
+    });
+  </script>
 </body>
 </html>
